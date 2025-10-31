@@ -1,0 +1,121 @@
+{
+  "life cycle declaration": {
+    "prefix": "lc",
+    "body": ["// -- LIFECYCLE -- //"],
+    "description": "Lifecycle declaration"
+  },
+  "public declaration": {
+    "prefix": "pub",
+    "body": ["// -- PUBLIC -- //"],
+    "description": "Public declaration"
+  },
+  "private declaration": {
+    "prefix": "priv",
+    "body": ["// -- PRIVATE -- //"],
+    "description": "Private declaration"
+  },
+  "init subject": {
+    "prefix": "initsubj",
+    "body": [
+      "/**",
+      " * @description Initialize the subjects.",
+      " * @returns { void } void",
+      " */",
+      "private _initSubjects(): void {",
+      "\t$0",
+      "}"
+    ],
+    "description": "Initialize a Subject"
+  },
+  "init ws": {
+    "prefix": "initws",
+    "body": [
+      "/**",
+      " * @description Initialize websocket connections.",
+      " * @returns { void } void",
+      " */",
+      "private _initWs(): void {",
+      "\t$0",
+      "}"
+    ],
+    "description": "Initialize a Web connection"
+  },
+  "init http": {
+    "prefix": "inithttp",
+    "body": [
+      "/**",
+      " * @description Initialize http connections.",
+      " * @returns { void } void",
+      " */",
+      "private _initHttp(): void {",
+      "\t$0",
+      "}"
+    ],
+    "description": "Initialize an HTTP connection"
+  },
+  "init ts": {
+    "prefix": "initts",
+    "body": [
+      "/**",
+      " * @description Initialize the transfer state.",
+      " * @returns { void } void",
+      " */",
+      "private _initTS(): void {",
+      "\t$0",
+      "}"
+    ],
+    "description": "Initialize the transfer state"
+  },
+  "init sub": {
+    "prefix": "initsubs",
+    "body": [
+      "/**",
+      " * @description Initialize the subscriptions.",
+      " * @returns { void } void",
+      " */",
+      "private _initSubscriptions(): void {",
+      "\t$0",
+      "}"
+    ],
+    "description": "Initialize the subscriptions"
+  },
+  "sd-action": {
+    "prefix": "sda",
+    "body": [
+      "@action({ UUID: undefined })",
+      "export class $1Action extends SingletonAction<$1Settings> {",
+      "\t// Main Loop trigger",
+      "\tprivate _notifyMainLoop: Subject<void> = new Subject();",
+      "\tprivate _triggerMainLoop(): void {",
+      "\t\tthis._notifyMainLoop.next();",
+      "\t}",
+      "",
+      "\t// Subscription Manager",
+      "\tprivate _subscriptionManager = new SubscriptionRecordManager();",
+      "",
+      "\tconstructor() {",
+      "\t\tsuper();",
+      "\t}",
+      "\t",
+      "\tasync onWillAppear(ev: WillAppearEvent<$1Settings>): Promise<void> {}",
+      "",
+      "\tonKeyDown(ev: KeyDownEvent<$1Settings>): void {}",
+      "",
+      "\tonWillDisappear(ev: WillDisappearEvent<$1Settings>): void {",
+      "\t\tthis._subscriptionManager.getSubscription(ev.action.id)?.unsubscribe();",
+      "\t\tthis._subscriptionManager.deleteSubscription(ev.action.id);",
+      "\t}",
+      "",
+      "\tasync onSendToPlugin(ev: SendToPluginEvent<$1Settings, $1Settings>): Promise<void> {",
+      "\t\tthis._triggerMainLoop();",
+      "\t}",
+      "}"
+    ],
+    "description": "Stream Deck action singleton"
+  },
+    "Console Log": {
+    "prefix": "clg",
+    "body": ["console.log($1);"],
+    "description": "Log output to console"
+  }
+}
